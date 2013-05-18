@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+ <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner" style="padding-left:10px">
+        <ul class="nav" >
+            <li><h2>Visualizing Academic Literature</h2></li>
+            <li class="divider-vertical"></li>
+            <li><h3>Kent Hawkings</h3></li> 
+            <li class="divider-vertical"></li>
+            <li><h3>Matthew Laten</h3></li>
+            <li class="divider-vertical"></li>
+            <li><h3>Marcel Terreblanche</h3></li>
+            <li class="divider-vertical"></li>
+        </ul>
+    </div>
+</div>
+<div class="container-fluid" style="padding-top:100px">
+<div class="span2">
+<ul class="nav nav-list">
+  <li class="nav-header">List header</li>
+  <li class="active"><a href="#intro">Introduction</a></li>
+  <li><a href="#">Library</a></li>
+  
+</ul>
+</div>
+<div class="span10 well">
+<h2><a name="intro"></a>Introduction</h2>
+
+<h3>Problem Description</h3>
+Conventional means of searching for published papers often involve traversing
+through large lists of items. More often than not, one is also forced to type
+in many different search terms in order to find related papers. As such, users
+might not be fully aware of areas of research related to the one they are
+currently researching. This could result in users missing out on potentially
+important articles. 
+
+<h3>Input/Output Data</h3>
+The only input data required for the system is relevant search terms relating
+to the field of research the user wished to find papers in. 
+
+The systems yields the following output data:
+<ul>
+<li>Published papers.</li>
+<li>Information related to the published papers (i.e. year published, authors, journal it was published in, etc.)</li>
+<li>Areas of research related to the current field the user is considering.</li>
+</ul>
+
+<h3>Typical User Profile</h3>
+Simply put, a typical user is anyone searching for published articles. In
+particular, users would typically be university/college students and
+professors. 
+
+Furthermore, our system could be extended to cover any field of research, thus
+giving us a practically infinite user base. 
+
+<h2>Related Work</h2>
+Current work relating to our system exists largely in the form of journal
+articles that simply display a list of relevant articles based on the search
+term used.
+
+Google Scholar
+
+ACM Digital Library
+
+IEEE library
+
+<h2>Visual Queries</h2>
+Our system aims at supporting the following visual queries:
+What fields are related to the current field of enquiry?
+What papers are closely related to the most relevant paper of my search?
+How closely related are these related papers?
+What kind of published papers exist in the related field of research (i.e. journal articles, books, book chapters, conference papers...)?
+<h2>Design Description</h2>
+Initially our system was aimed at visualising published papers at UCT (this
+data can be found at www.researchoffice.uct.ac.za/publication_count/stats/). In
+particular, our system attempted to visualise two main pieces of information:
+<ul>
+<li>Articles/reports relevancy to fields of of research</li>
+<li>Number of articles published in each field</li>
+</ul>
+
+Our design was largely inspired by two existing data visualisations:
+Venn Diagrams:
+Venn Diagrams are highly effective tools at displaying both unions and
+intersections between different sets of data. Thus it would lend itself well to
+showing unions and intersections between different fields of research within
+UCT.
+
+Graphs:	 
+Graphs are visual representations of entities (Nodes) and connections (Edges)
+between pairs of said entities. Moreover, they serve as effective tools for
+displaying paths between any two entities. To this end it was decided that
+graphs would be an effective way to visualise the actual published papers and
+the relationships between them.
+
+Our system worked by using an “interactive drilldown”. This was essentially a
+process whereby the user starts at a macro level (i.e. the difference faculties
+of the university) and works their way down through the hierarchical structure,
+eventually arriving at the published papers in each field. 
+In particular, this is:
+Faculty -> Department -> Fields of research within the department -> Papers published within those fields
+
+Upon reaching the level at which the fields of the department in question are
+visible, the relationships between the fields are displayed using Venn
+Diagrams.
+
+Upon selecting a field in the department, users are shown a graph representing
+the papers published in that particular field. In addition, relationships
+between the current field and other related fields are shown.
+<h3>Initial Sketches</h3>
+<h3>Initial Prototype</h3>
+Upon finalising our initial design, a formalised low-fidelity version of our
+visualisation was created using Photoshop:
+
+Reaction to our initial prototype was not particularly positive. Overall, the
+concept of “interactive drilldown” was not well received. In terms of usability
+the system was not particularly efficient as it required users to sort through
+several pages in order to potentially find a field/paper they were interested
+in. Moreover, using the area of the circles to display the number of papers
+published in each field was erroneous. Instead, the radius of the circles
+should should represent the number of papers in each field. This is due to the
+fact that the "number of papers" published is a one dimensional measure. Area
+on the other hand is a two dimensional measurement. Using a two dimensional
+measurement to represent a one dimensional measurement results in a
+misrepresentation of the data.
+
+<h3>Revised Sketches</h3>
+As a result of the feedback given, the overall scope of our project was
+altered. Rather than simply representing published papers at UCT it was decided
+to create a visual representation of search results of published papers. In
+particular, it was decided that search results from "Google Scholar"
+(scholar.google.com) would be visualised. 
+
+The new design still retains some similarities with the original. Venn Diagrams
+and Graphs still remained the largest inspiration for our visualisation. In
+addition, the focus of the design remained the visualisation of related
+articles. However there are several main differences outlined below:
+
+Rather than focusing on the UCT data set, the new design could be used to
+represent any desired collection of published works. 
+
+The entire concept of “interaction drilldown” was completely removed. Instead
+users simply type in a search term and immediately view papers related to that
+result.
+
+Addition visualisation elements were added to the results. In particular,
+several distinctions were made in the way in which papers are related (to be
+discussed later).
+
+<h3>Final Implementation</h3>
+<h2>Implementation Analysis</h2>
+Overall the design process was significantly more difficult than initially perceived. 
+<h3>Strengths</h3>
+<h3>Weaknesses</h3>
+<h2>Conclusions</h2>
+
+<h2>Future Work</h2>
+Our system could potentially be modified as a dynamic visualisation of a
+university project archive visualization (or a PhD/MSc thesis archive
+visualization). For example the UCT Computer Science Honours projects are
+currently stored by year (in pubs.cs.uct.ac.za). This makes it difficult to
+search for similar projects, or to get an overview of the range and type of
+projects available. Your task will be to design a dynamic visualization of the
+Honours project archive. Ideally, your design should be fairly general, so that
+it can be applied to similar problems, like PhD thesis archives etc.
+
+Workload Split
+All members of the team were equally involved in the design process, otherwise all other roles are list below:
+
+Kent Hawkings:
+Initial Presentation
+Web Page Report
+Final Presentation
+
+Matthew Laten:
+Initial Presentation
+Web Page Framework
+Final Presentation
+
+Marcel Terblanche:
+Initial Design Low-Fidelity Prototype
+Final Design Low-Fidelity Prototype
+Final Presentation
+
+Overall, all members of the team were happy with the workload as it represented
+an equal distribution. Moreover it played on the strengths and preferences of
+the members.
+</div>
+</div>
+</body>
+<footer>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+</footer>
+</html>
