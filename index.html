@@ -4,9 +4,9 @@
  <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<div class="navbar navbar-fixed-top">
+<div class="navbar navbar-fixed-bottom">
     <div class="navbar-inner" style="padding-left:10px">
-        <ul class="nav" >
+        <ul class="nav">
             <li><h2>Visualizing Academic Literature</h2></li>
             <li class="divider-vertical"></li>
             <li><h3>Kent Hawkings</h3></li> 
@@ -18,25 +18,25 @@
         </ul>
     </div>
 </div>
-<div class="container-fluid" style="padding-top:100px">
+
+<div class="container-fluid" style="margin-top:30px">
 <div class="span2">
-<ul class="nav nav-list">
-  <li class="nav-header">List header</li>
-  <li class="active"><a href="#intro">Introduction</a></li>
-  <li><a href="#">Library</a></li>
-  
+<ul class="nav nav-list affix span">
+  <li class="nav-header">Navigation</li>
+  <li><a href="#intro">Introduction</a></li>
+  <li><a href="#related">Related Work</a></li>
+<li><a href="#query">Visual Queries</a></li>
+<li><a href="#design">Design Description</a></li>
+<li><a href="#implementation">Implementation Analysis</a></li>
+<li><a href="#conclusion">Conclusions & Future Work</a></li>
 </ul>
 </div>
-<div class="span10 well">
-<h2><a name="intro"></a>Introduction</h2>
+<div class="span10 well" style="margin-left:80px">
+<a name="intro"></a>
+<h2>Introduction</h2>
 
 <h3>Problem Description</h3>
-Conventional means of searching for published papers often involve traversing
-through large lists of items. More often than not, one is also forced to type
-in many different search terms in order to find related papers. As such, users
-might not be fully aware of areas of research related to the one they are
-currently researching. This could result in users missing out on potentially
-important articles. 
+Conventional means of searching for published papers often involve traversing through large lists of items. More often than not, one is also forced to type in many different search terms in order to find related papers, since there is no obvious visual representation between related papers. As such, users might not be fully aware of areas of research related to the one they are currently researching. This could result in users missing out on potentially important articles.
 
 <h3>Input/Output Data</h3>
 The only input data required for the system is relevant search terms relating
@@ -57,23 +57,31 @@ professors.
 Furthermore, our system could be extended to cover any field of research, thus
 giving us a practically infinite user base. 
 
+<a name="related"></a>
 <h2>Related Work</h2>
 Current work relating to our system exists largely in the form of journal
 articles that simply display a list of relevant articles based on the search
-term used.
-
+term used. Examples include: 
+<br>
 Google Scholar
+<img src="images/related/google-scholar.png">
 
+<br><br>
 ACM Digital Library
+<img src="images/related/acm.png">
 
-IEEE library
-
+<a name="query"></a>
 <h2>Visual Queries</h2>
 Our system aims at supporting the following visual queries:
-What fields are related to the current field of enquiry?
-What papers are closely related to the most relevant paper of my search?
-How closely related are these related papers?
-What kind of published papers exist in the related field of research (i.e. journal articles, books, book chapters, conference papers...)?
+<ul>
+<li>What fields are related to the current field of enquiry?</li>
+<li>What papers are closely related to the most relevant paper of my search?</li>
+<li>How closely related are these related papers?</li>
+<li>What kind of published papers exist in the related field of research (i.e. journal articles, books, book chapters, conference papers...)?</li>
+<li>How frequently cited is the paper?</li>
+</ul>
+
+<a name="design"></a>
 <h2>Design Description</h2>
 Initially our system was aimed at visualising published papers at UCT (this
 data can be found at www.researchoffice.uct.ac.za/publication_count/stats/). In
@@ -84,51 +92,76 @@ particular, our system attempted to visualise two main pieces of information:
 </ul>
 
 Our design was largely inspired by two existing data visualisations:
-Venn Diagrams:
+<p></p>
+<b>Venn Diagrams:</b>
+<p>
 Venn Diagrams are highly effective tools at displaying both unions and
 intersections between different sets of data. Thus it would lend itself well to
 showing unions and intersections between different fields of research within
 UCT.
+</p>
 
-Graphs:	 
+<p><b>Graphs:</b></p>
+<p>
 Graphs are visual representations of entities (Nodes) and connections (Edges)
 between pairs of said entities. Moreover, they serve as effective tools for
 displaying paths between any two entities. To this end it was decided that
 graphs would be an effective way to visualise the actual published papers and
 the relationships between them.
-
-Our system worked by using an “interactive drilldown”. This was essentially a
+</p>
+<p>
+Our system worked by using an "interactive drilldown". This was essentially a
 process whereby the user starts at a macro level (i.e. the difference faculties
 of the university) and works their way down through the hierarchical structure,
 eventually arriving at the published papers in each field. 
-In particular, this is:
-Faculty -> Department -> Fields of research within the department -> Papers published within those fields
-
+</p>
+<p>
 Upon reaching the level at which the fields of the department in question are
 visible, the relationships between the fields are displayed using Venn
 Diagrams.
+</p>
 
 Upon selecting a field in the department, users are shown a graph representing
 the papers published in that particular field. In addition, relationships
 between the current field and other related fields are shown.
-<h3>Initial Sketches</h3>
+
 <h3>Initial Prototype</h3>
 Upon finalising our initial design, a formalised low-fidelity version of our
-visualisation was created using Photoshop:
+visualisation was created using Photoshop. Reaction to our initial prototype 
+was not particularly positive. Overall, the concept of "interactive drilldown"
+was not well received. In terms of usability the system was not particularly 
+efficient as it required users to sort through several pages in order to 
+potentially find a field/paper they were interested in. Moreover, using the 
+area of the circles to display the number of papers published in each field 
+was erroneous. Instead, the radius of the circles should should represent 
+the number of papers in each field. This is due to the fact that the 
+"number of papers" published is a one dimensional measure. Area on the other
+hand is a two dimensional measurement. Using a two dimensional measurement to 
+represent a one dimensional measurement results in a misrepresentation of the data.
 
-Reaction to our initial prototype was not particularly positive. Overall, the
-concept of “interactive drilldown” was not well received. In terms of usability
-the system was not particularly efficient as it required users to sort through
-several pages in order to potentially find a field/paper they were interested
-in. Moreover, using the area of the circles to display the number of papers
-published in each field was erroneous. Instead, the radius of the circles
-should should represent the number of papers in each field. This is due to the
-fact that the "number of papers" published is a one dimensional measure. Area
-on the other hand is a two dimensional measurement. Using a two dimensional
-measurement to represent a one dimensional measurement results in a
-misrepresentation of the data.
+<h3>Initial Sketches</h3>
+<img src="images/initial/1.jpg">
+<br>
 
-<h3>Revised Sketches</h3>
+<img src="images/initial/2.jpg">
+<br>
+
+<img src="images/initial/3.jpg">
+<br>
+
+<img src="images/initial/4.jpg">
+<br>
+
+<img src="images/initial/5.jpg">
+<br>
+
+<img src="images/initial/6.jpg">
+<br>
+
+<img src="images/initial/7.jpg">
+<br>
+
+<h3>Revised Prototype</h3>
 As a result of the feedback given, the overall scope of our project was
 altered. Rather than simply representing published papers at UCT it was decided
 to create a visual representation of search results of published papers. In
@@ -151,14 +184,116 @@ Addition visualisation elements were added to the results. In particular,
 several distinctions were made in the way in which papers are related (to be
 discussed later).
 
-<h3>Final Implementation</h3>
-<h2>Implementation Analysis</h2>
-Overall the design process was significantly more difficult than initially perceived. 
-<h3>Strengths</h3>
-<h3>Weaknesses</h3>
-<h2>Conclusions</h2>
+<h3>Revised Sketches</h3>
 
-<h2>Future Work</h2>
+<img src="images/revised/1.jpg">
+<br>
+
+<img src="images/revised/2.jpg">
+<br>
+
+<img src="images/revised/3.jpg">
+<br>
+
+<img src="images/revised/4.jpg">
+<br>
+
+
+<h3>Final Implementation</h3>
+Reception of our revised design was definitely more positive than our initial design. The decrease in the overall scope of the system was well received. However it was noted that certain aspects of our design were somewhat quixotic. In particular the way in which we extracted information about related fields was somewhat unrealistic. Furthermore it was noted that not enough information about papers was shown to the user immediately (i.e. the abstract, data, publisher, etc.)
+
+<b>Use Case</b>
+
+In order to most successfully describe our system we describe a typical use case. The persona in this particular use case is our very own Matthew Laten who is doing research for his honours project about procedural terrain generation. In particular, Matthew is searching for papers relating to Perlin Noise. 
+
+Matthew starts by simply typing in “Perlin Noise” into the Google Scholar search bar. Initially this presents him with a typical Google Scholar results screen:
+<img src="images/walkthrough/1.jpg">
+<br><br>
+Matthew then promptly clicks the first result (being the most relevant)
+<img src="images/walkthrough/2.jpg">
+<br><br>
+As this point our system kicks into action and Matthew is presented with a side panel allowing him to refine him search results used in the visualisation. In particular Matthew is able to refine the keywords in the visualisation (which essentially represent the fields in our visualisation; i.e. the circles in our Venn Diagram). Matthew is also able to choose which authors he wishes to get his results from either by choosing from a list (relating to the chosen paper) or by specifying his own.
+<img src="images/walkthrough/3.jpg">
+<br><br>
+Upon choosing to visualise everything Matthew is presented the actual visualisation of our system: 
+<img src="images/walkthrough/visualisation2.jpg">
+<br><br>
+At this point Matthew feels that the side panels on the left are taking up too much space and decided to collapse them. He does so by simply clicking on the “collapse” buttons in the right hand corner of each side panel:
+<img src="images/walkthrough/visualisation3.jpg">
+<img src="images/walkthrough/visualisation4.jpg">
+<img src="images/walkthrough/visualisation5.jpg">
+<br><br>
+Upon moving his mouse away from the left hand side of the screen the collapsed side panels disappear. He need not worry however as they will re-appear again as soon as he moves his mouse to the left hand side of the screen
+<img src="images/walkthrough/visualisation6.jpg">
+<br><br>
+Now that Matthew has the entire screen real estate dedicated to his visualisation he decides to start searching for papers he might be interested in. The central point of focus of the system is currently the paper than he initially clicked on. Seeing as this is clearly the most relevant paper, Matthew decides to investigate it further. He does so by mousing over the “abstract” link. As Matthew would expect, this causes a dialogue box to appear containing the abstract of the of article. 
+<img src="images/walkthrough/visualisation7.jpg">
+<br><br>
+As interesting and relevant as this paper seems, Matthew decided he should search around a little bit more. He comes across a conference paper on register combiners that peeks his interest. 
+<img src="images/walkthrough/visualisation8.jpg">
+<br><br>
+As interesting as this seems Matthew decides that it is not of too great importance to his research. Not wanting to lose the paper entirely however Matthew decides to bookmark it so that he may come back to it later. He does so by right clicking on it. 
+<img src="images/walkthrough/visualisation9.jpg">
+<br><br>
+At this point Matthew decides that he really isn’t interested in looking at Book results. As such he decides to remove all the books from his results by simply clicking on the “Book” node in the bottom left hand corner of the screen. 
+<img src="images/walkthrough/visualisation10.jpg">
+<br><br>
+Content with green free graph Matthew stumbles across a journal article: “A cellular texture basis function”.  
+<img src="images/walkthrough/visualisation11.jpg">
+<br><br>
+He decides that this is far more interesting than Perlin noise pixel shaders. As such he makes it the center of his visualisation by left clicking on it.
+<img src="images/walkthrough/visualisation12.jpg">
+<br><br>
+Matthew notices that the node that he clicked on has now become the center of attention. He also notices that all nodes more than two levels away from the center node have disappeared. Except of course for the node that he bookmarked earlier. 
+<img src="images/walkthrough/visualisation13.jpg">
+<br><br>
+In between feeling smug about having the foresight to bookmark that node and marvelling at the brilliance of this system Matthew decides to left click on his central node. At this point Matthew is presented with his article.  
+
+<br><br>
+<b>Reasoning</b>
+<br>
+Due to the fact that our system is a visualisation of Google Scholar search results the elements of our design are directly related to the information that can be gleaned from a typical Google Scholar search. To this end, we outline the various sources of certain design aspects below.
+<br><br>
+
+<b>Citations:</b>
+<br>
+All Google Scholar search results display the number of times that the book/article has been cited by other published papers (As seen in the following figure). Using this information we are able to determine the appropriate size of each node in our visualisation.
+<img src="images/reasoning/psych2.jpg">
+<br><br>
+Google Scholar provides a side panel with options allowing users to filter their search results. This includes the ability to choose which time frame the user wishes to get search results from. From this we are able to extract the appropriate papers for our own time frame filter.
+<img src="images/reasoning/psych3.jpg">
+<br><br>
+Each result of a Google Scholar search contains a link allowing users to see published papers related to the one in question. This allows us to determine which articles are the most related as well as how related they are. This could also be used in conjunction with a relatively simple key matching algorithm that could further determine how related published papers are.
+<img src="images/reasoning/psych4.jpg">
+<br><br>
+Google search results provide means with which one can easily differentiate between Books and articles (That is, all results are articles unless otherwise indicated as seen in the figure below). In order to differentiate between a articles and conference papers on simply needs to determine in the publication in which the paper was published (i.e. conference proceedings)
+<img src="images/reasoning/psych5.jpg">
+<br><br>
+In order to extract our keywords used in our filter as well as determining our fields (i.e. the circles in the Venn diagram) in our visualisation we scan the published articles for keywords. We then colate the most commonly appearing keywords and use those to represent our encompassing fields that the user can choose to filter.
+<img src="images/reasoning/5.jpg">
+<br><br>
+<a name="implementation"></a>
+<h2>Implementation Analysis</h2>
+
+Overall the design process was significantly more difficult than initially perceived.  The largest problem encountered with the implementation was the concept of displaying the papers and relationships between them on one screen. Simply showing all the results on the screen along with the relationships between all of the results would create an excessively messy and practically unusable system.  This was largely resolved by only showing the papers that are most relevant to the current paper in focus. At any point only one particular paper remains the focus of the screen. This prevents too much visual "noise" in the form of excess (and possibly irrelevant papers) papers.
+
+In addition, showing the relationships between the fields (using the Venn diagram paradigm) presented a similar issue. If we simply showed the relationships between all the relevant fields this would essentially result in a mess of intersecting circles (as most fields have some sort of relationship in terms of published papers). This was solved in a similar manner to the previous problem. At any point in the system, a single field remains the core "focus" of the system. Only the strongest relationships between other fields and the field currently in focus are shown. 
+
+The inherent strengths and weaknesses of our system are outlined below
+
+<h3>Strengths</h3>
+Our system effectively "summarises" published papers related to the user's field of interest (defined either by their search term or by the current field reached by "navigating" the system). Moreover, it effectively displays how relevant related papers are. This allows users to quickly and efficiently assess the papers most relevant to their search. 
+
+Moreover our system allows the user to easily find fields related to the one currently under consideration. These related fields would not necessarily be obvious to the user (who would usually need to search through papers in order to discover relevant fields) and might go unexplored using conventional systems.
+
+
+<h3>Weaknesses</h3>
+Our system would have struggled to visualize from a search query directly, so we adapted it to start the visualization from when a user clicks a paper. This overcomes our previously mentioned weakness of ambiguity in interpreting search result. However, this leads to in increase in time before the user can find related papers using our system, which can also be seen as a weakness. We also recognize that lists allow for quick scanning to find papers; something that our system does not support. However, this is an acceptable trade-off, since our system is more based on the idea of exploring for papers that are related to what you are looking for.
+
+<a name="conclusion"></a>
+<h2>Conclusions & Future Work</h2>
+
+
 Our system could potentially be modified as a dynamic visualisation of a
 university project archive visualization (or a PhD/MSc thesis archive
 visualization). For example the UCT Computer Science Honours projects are
@@ -168,23 +303,30 @@ projects available. Your task will be to design a dynamic visualization of the
 Honours project archive. Ideally, your design should be fairly general, so that
 it can be applied to similar problems, like PhD thesis archives etc.
 
-Workload Split
+<h3>Workload Split</h3>
 All members of the team were equally involved in the design process, otherwise all other roles are list below:
 
+<br><br>
 Kent Hawkings:
-Initial Presentation
-Web Page Report
-Final Presentation
+<ul>
+<li>Initial Presentation</li>
+<li>Web Page Report Content</li>
+<li>Final Presentation</li>
+</ul>
 
 Matthew Laten:
-Initial Presentation
-Web Page Framework
-Final Presentation
+<ul>
+<li>Initial Presentation</li>
+<li>Web Page Report Framework</li>
+<li>Final Presentation</li>
+</ul>
 
 Marcel Terblanche:
-Initial Design Low-Fidelity Prototype
-Final Design Low-Fidelity Prototype
-Final Presentation
+<ul>
+<li>Initial Design Low-Fidelity Prototype</li>
+<li>Final Design Low-Fidelity Prototype</li>
+<li>Final Presentation</li>
+</ul>
 
 Overall, all members of the team were happy with the workload as it represented
 an equal distribution. Moreover it played on the strengths and preferences of
